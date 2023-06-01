@@ -63,8 +63,8 @@ function App() {
       </div>
       <TodoForm addTodo={addTodo} />
     </div>
-   
   )
 }
+
 
 export default App

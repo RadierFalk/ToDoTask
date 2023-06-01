@@ -88,3 +88,15 @@ input, select {
 .filter-options div {
   flex: 1 1 0;
 }
+.footer {
+  background-color: #279f27;
+  color: #333;
+  display: flex;
+  padding: 30px;
+  margin-top: 30px;
+  border: 1px solid #13821b;
+  border-radius: 10px;
+  justify-content: center;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 35px;
+}
