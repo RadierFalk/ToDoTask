@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Todo from './components/todo';
 import "./App.css";
 import TodoForm from './components/TodoForm';
+import Seach from './components/Seach';
 function App() {
   const [todos, setTodos] = useState([
     {
@@ -24,6 +25,8 @@ function App() {
     }
   ])
 
+  const [seach, setSeach] = useState("")
+
   const addTodo = (text, category) => {
     const newTodo = [...todos, {
       id: Math.floor(Math.random()*10000),
@@ -34,13 +37,32 @@ function App() {
   ]
 
   setTodos(newTodo)
-  } 
+  }
+  
+  const removeTodo = (id) => {
+    const newTodos = [...todos]
+    const filteredTodos = newTodos.filter(todo => todo.id !== id ? todo : null
+    )
+      setTodos(filteredTodos)
+  }
+  const completeTodo = (id) => {
+    const newTodos = [...todos]
+    newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo)
+    setTodos(newTodos)
+  }
   return (
     <div className="app">
       <h1>Lista de Tarefas</h1>
+      <Seach seach={seach} setSeach={setSeach} />
       <div className='todo-list'>
-        {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} />
+        {todos.filter((todo) => todo.text.toLowerCase().includes(seach.toLowerCase())
+        )
+         .map((todo) => (
+          <Todo key={todo.id}
+           todo={todo}
+            removeTodo={removeTodo}
+             completeTodo={completeTodo} 
+             />
         ))}
       </div>
       <TodoForm addTodo={addTodo} />
